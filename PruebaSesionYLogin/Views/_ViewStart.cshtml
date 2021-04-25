@@ -1,0 +1,21 @@
+﻿@{   
+    PruebaSesionYLogin.Sessions.SessionUser objSesion = new PruebaSesionYLogin.Sessions.SessionUser();
+    string rolUsuario = objSesion.GetRolUsuarioClaim(Context);
+
+    if (rolUsuario != null)
+    {
+        switch (rolUsuario)
+        {
+            case "general":
+                Layout = "_Layout_General";
+                break;
+            case "gerente":
+                Layout = "_Layout_Gerente";
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+

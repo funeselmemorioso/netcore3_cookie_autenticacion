@@ -1,0 +1,49 @@
+﻿
+@{ 
+    Layout = null;
+}
+
+<p>Pantalla de Login</p>
+
+
+<p>Usuario</p>
+<input type="text" name="name" value="" id="txt_nombre" />
+<p>PAssword</p>
+<input type="password" name="name" value="" id="pass" />
+<button onclick="javascript: loguearse();">Entrar</button>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<script>
+
+    function loguearse() {
+        var usu = $("#txt_nombre").val();
+        var pass = $("#pass").val();       
+
+        var user = {
+            "Username": usu,
+            "Password": pass
+        };
+
+        $.ajax({
+            url: '/Login/Loguearse',
+            type: 'POST',           
+            data: user,
+            success: function (p) {
+                console.log(p);
+
+                if (p == "ok") { window.location.href = "/Home/index"; }
+                else { alert("credenciales mal");}
+            },
+            error: function (p) {
+                console.log(p);
+                
+            }
+        });
+    }
+
+
+
+</script>
